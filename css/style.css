@@ -96,7 +96,7 @@ html, body {
 .sign-page {
   background-color: #142328;
   flex: 1 1 auto;
-  padding: 89px 5px 116px;
+  padding: 46px 5px 79px;
   display: flex;
   flex-direction: column;
 }
