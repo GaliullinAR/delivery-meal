@@ -1,7 +1,8 @@
 let getMeal = document.querySelector('.registration__link');
 let nav = document.querySelector('.menu__list');
 let items = document.querySelectorAll('.item');
-
+let wrapper = document.querySelector('.wrapper');
+let wrapperChildsArr = Array.from(wrapper.querySelectorAll('.item'));
 let itemsArr = Array.from(items);
 
 getMeal.addEventListener('click', function (e) {
@@ -15,14 +16,16 @@ let lists = nav.querySelectorAll('.menu__list-item');
 let listsArr = Array.from(lists);
 
 function getIndex(list) {
-  let result = null;
-  list.forEach((item, index) => {
+  return list.findIndex(item => {
     if (item.classList.contains('active')) {
-      result = index;
+      return item;
     }
   })
-  return result;
+  
 }
+
+let currentIndex = getIndex(listsArr);
+wrapperChildsArr[currentIndex].style.display = 'block';
 
 listsArr.forEach(item => {
   item.addEventListener('click', function (e) {
@@ -31,5 +34,14 @@ listsArr.forEach(item => {
     console.log(lastIdx);
     listsArr[lastIdx].classList.remove('active');
     e.currentTarget.classList.add('active');
+
+    let currentIdx = listsArr.findIndex(item => {
+      if (item.classList.contains('active')) {
+        return item;
+      }
+    })
+
+    wrapperChildsArr[lastIdx].style.display = 'none';
+    wrapperChildsArr[currentIdx].style.display = 'block';
   })
 })
